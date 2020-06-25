@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import ListingsDashboard from "./ListingsCard";
 import listingsFormSchema from "./ListingsFormSchema";
 import ListingsContainer from "./ListingsContainer";
 import Wrapper from "./FormWrapper";
 import Button from "./Button";
 import * as yup from "yup";
 import axios from "axios";
-
-export default function ListingsForm() {
+import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+export default function ListingsForm(props) {
   const initialFormValues = {
     propertyName: "",
     propertyType: "",
@@ -28,10 +30,11 @@ export default function ListingsForm() {
     },
     cancellation: "",
   };
+  const initialListings = [];
   const [formState, setFormState] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialFormValues);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState(initialListings);
   useEffect(() => {
     listingsFormSchema.isValid(formState).then((valid) => {
       setButtonDisabled(!valid);
@@ -54,14 +57,26 @@ export default function ListingsForm() {
         });
       });
   };
-  const formSubmit = (event) => {
-    event.preventDefault();
+  // const formSubmit = (event) => {
+  //   event.preventDefault();
+  //   axios
+  //     .post("https://reqres.in/api/users", formState)
+  //     .then((response) => {
+  //       setListings([...listings, response.data]);
+  //       console.log("success", response.data);
+  //       setFormState(initialFormValues);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response);
+  //     });
+  // };
+  const getListings = () => {
+    // 🔥 STEP 5- IMPLEMENT! ON SUCCESS PUT LISTINGS IN STATE
+    //    helper to [GET] all listings from `http://localhost:4000/friends`
     axios
-      .post("https://reqres.in/api/users", formState)
+      .get("http://localhost:3000/dashboard")
       .then((response) => {
-        setListings([...listings, response.data]);
-        console.log("success", response.data);
-        setFormState(initialFormValues);
+        setListings(response.data);
       })
       .catch((err) => {
         console.log(err.response);
@@ -89,9 +104,48 @@ export default function ListingsForm() {
       },
     });
   };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const postNewListing = (newListing) => {
+      // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED LISTING TO STATE
+      //    helper to [POST] `newListing` to `http://localhost:4000/friends`
+      //    and regardless of success or failure, the form should reset
+      axios
+        .post("https://reqres.in/api/listings", newListing)
+        .then((res) => {
+          setListings([...listings, res.data]);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        })
+        .finally(() => {
+          setFormState(initialFormValues);
+        });
+    };
+    const newListing = {
+      propertyName: formState.propertyName.trim(),
+      propertyType: formState.propertyType,
+      roomType: formState.roomType,
+      guests: formState.guests,
+      bedrooms: formState.bedrooms,
+      beds: formState.beds,
+      bathrooms: formState.bathrooms,
+      // 🔥 STEP 8- WHAT ABOUT AMENITIES?
+      amenities: Object.keys(formState.amenities)
+        // MUAHAHAHAHAHA GOT IT
+        .filter((amenity) => formState.amenities[amenity] === true),
+      cancellation: formState.cancellation,
+    };
+    // 🔥 STEP 9- POST NEW LISTING USING HELPER
+    postNewListing(newListing);
+  };
+  //SIDE EFFECTS
+  useEffect(() => {
+    getListings();
+  }, []);
   return (
     <ListingsContainer>
-      <form onSubmit={formSubmit}>
+      <form onSubmit={onSubmit}>
         <Wrapper>
           <div className="formHeading">
             <h1>Add Listing</h1>
@@ -287,12 +341,17 @@ export default function ListingsForm() {
             </label>
           </div>
           <div className="submitButton">
-            <Button disabled={buttonDisabled} name="submit">
-              Submit
-            </Button>
+            <Link to="/dashboard">
+              <Button disabled={buttonDisabled} name="submit">
+                Submit
+              </Button>
+            </Link>
           </div>
         </Wrapper>
       </form>
+      <Route path="/dashboard">
+        <ListingsDashboard />
+      </Route>
     </ListingsContainer>
   );
 }
