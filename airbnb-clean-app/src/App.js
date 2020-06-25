@@ -10,20 +10,22 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Header />
-        <Route path="/login">
-          <FormContainer>
-            <Login />
-          </FormContainer>
-        </Route>
-        <Route path="/register">
-          <FormContainer>
-            <Form />
-          </FormContainer>
-        </Route>
-        <Route path="/listings">
-          <ListingsForm />
-        </Route>
+        <Header />
+          <Route path="/login">
+            <FormContainer>
+              <Login />
+            </FormContainer>
+          </Route>
+          <Route path="/register">
+            <FormContainer>
+              <Form />
+            </FormContainer>
+          </Route>
+          <Route path="/listings">
+            <FormContainer>
+              <ListingsForm />
+            </FormContainer>
+          </Route>
     </div>
   );
 }

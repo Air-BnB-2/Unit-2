@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import StyledLink from './Link';
 import Container from './Container';
 import Wrapper from './FormWrapper';
 import Button from './Button';
@@ -67,7 +66,7 @@ function Login() {
     const newFormData = {
       ...formState,
       [event.target.name]:
-        event.target.type === "button" ? event.target.submit : event.target.value
+        event.target.type === "button" ? event.target.submit : event.target.value,
     };
     validateChange(event);
     setFormState(newFormData);
@@ -112,8 +111,8 @@ function Login() {
         <p>
             Don't have an account?
             <br />
-            <Link to='/register'>
-              <StyledLink>Register in here</StyledLink>
+            <Link to='/register' className='link'>
+              Register here
             </Link>
         </p>
         </Wrapper>

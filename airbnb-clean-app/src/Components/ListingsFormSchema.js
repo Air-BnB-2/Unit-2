@@ -1,10 +1,10 @@
-import * as Yup from "yup";
+import * as yup from "yup";
 
-const listingsFormSchema = Yup.object().shape({
-  propertyName: Yup.string()
+const listingsFormSchema = yup.object().shape({
+  propertyName: yup.string()
     .required("Please enter a property name")
     .min(2, "Property Name must include at least 2 characters"),
-  propertyType: Yup.string().oneOf(
+  propertyType: yup.string().oneOf(
     [
       "apartment",
       "house",
@@ -16,15 +16,15 @@ const listingsFormSchema = Yup.object().shape({
     ],
     "Please select a property type"
   ),
-  roomType: Yup.string().oneOf(
+  roomType: yup.string().oneOf(
     ["entire", "private", "shared"],
     "Please select a room type"
   ),
-  guests: Yup.string().required("Please select number of guests"),
-  bedrooms: Yup.string().required("Please select number of bedrooms"),
-  beds: Yup.string().required("Please select number of beds"),
-  bathrooms: Yup.string().required("Please select number of bathrooms"),
-  cancellation: Yup.string().oneOf(
+  guests: yup.string().required("Please select number of guests"),
+  bedrooms: yup.string().required("Please select number of bedrooms"),
+  beds: yup.string().required("Please select number of beds"),
+  bathrooms: yup.string().required("Please select number of bathrooms"),
+  cancellation: yup.string().oneOf(
     ["strict", "moderate", "flexible", "superStrict30", "superStrict60"],
     "Please select cancellation policy"
   ),

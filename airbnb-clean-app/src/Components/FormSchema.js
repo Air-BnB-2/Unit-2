@@ -1,17 +1,17 @@
-import * as Yup from "yup";
+import * as yup from "yup";
 
-const formSchema = Yup.object().shape({
-  firstName: Yup.string()
+const formSchema = yup.object().shape({
+  firstName: yup.string()
     .required("First Name is a required field")
     .min(2, "First Name must include at least 2 characters"),
-  lastName: Yup.string()
+  lastName: yup.string()
     .required("Last Name is a required field")
     .min(2, "Last Name must include at least 2 characters"),
-  username: Yup.string().required("Username is a required field"),
-  email: Yup.string()
+  username: yup.string().required("Username is a required field"),
+  email: yup.string()
     .required("Email is a required field")
     .email("Must enter a valid email address"),
-  password: Yup.string()
+  password: yup.string()
     .required("Password is a required field")
     .min(6, "Password must be at least 6 characters"),
 });
