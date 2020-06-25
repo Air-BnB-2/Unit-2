@@ -117,7 +117,6 @@ function Login(props) {
           onChange={onInputChange}
         />
       </label>
-
       <SubmitButton id="submitBtn" disabled={buttonDisabled} type="submit">
         Login
       </SubmitButton>

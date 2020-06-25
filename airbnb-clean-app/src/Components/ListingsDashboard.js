@@ -8,7 +8,7 @@ const ListingsDashboard = (props) => {
     return <p>No Listings Found!</p>;
   }
 
-  return <>{!!listingsForm}</>;
+  return <div>LISTING CARD</div>;
 };
 
 export default ListingsDashboard;

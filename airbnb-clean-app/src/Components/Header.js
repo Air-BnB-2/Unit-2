@@ -1,15 +1,7 @@
-// h1
-// nav links
-// signup button
-// primary red (r255,g56,b92 - #FF385C),
-// secondary red (r216,g5,b101 - #D80565),
-// white (r255,g255,b255 - #FFFFFF),
-// black (r0,g0,b0 - #000000),
-// grey (r34, g34, b34 - #222222)
-
 import React from "react";
 import styled from "styled-components";
 import Logo from "../Logo.png";
+import { Link } from "react-router-dom";
 
 const StyledNavBar = styled.nav`
   display: flex;
@@ -65,8 +57,12 @@ function Header() {
         <NavLinks href="https://practical-khorana-8d6535.netlify.app/about.html">
           About
         </NavLinks>
-        <Button type="secondary-red">Register</Button>
-        <Button type="primary-red">Login</Button>
+        <Link to="/register">
+          <Button type="secondary-red">Register</Button>
+        </Link>
+        <Link to="/login">
+          <Button type="primary-red">Login</Button>
+        </Link>
       </NavDiv>
     </StyledNavBar>
   );
