@@ -144,7 +144,9 @@ export default function Form() {
           <p>
             Already have an account?
             <br />
-            <StyledLink href="#">Log in here</StyledLink>
+            <Link to='/login'>
+              <StyledLink>Log in here</StyledLink>
+            </Link>
           </p>
         </Wrapper>
       </form>

@@ -1,72 +1,52 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import StyledLink from './Link';
+import Container from './Container';
+import Wrapper from './FormWrapper';
+import Button from './Button';
+import loginFormSchema from './LoginFormSchema';
 import * as yup from "yup";
 import axios from "axios";
 
-const StyledForm = styled.form`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const SubmitButton = styled.button`
-  height: 20px;
-  width: 60px;
-  display: flex;
-  justify-content: center;
-`;
-
-function Login(props) {
-  const { values } = props;
+function Login() {
 
   const initialFormValues = {
     username: "",
-    password: "",
+    password: ""
   };
 
   const [users, setUsers] = useState([]);
   const [formState, setFormState] = useState(initialFormValues);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormValues);
-
-  // validation
-  const formSchema = yup.object().shape({
-    username: yup
-      .string()
-      .min(3, "username must be longer than 3 characters")
-      .required("Username is a required field"),
-    password: yup
-      .string()
-      .min(3, "password must be longer than 3 characters")
-      .required("Password is a required field"),
-  });
-
+ 
   useEffect(() => {
-    formSchema.isValid(formState).then((valid) => {
+
+    loginFormSchema.isValid(formState).then((valid) => {
       setButtonDisabled(!valid);
     });
   }, [formState]);
 
   const validateChange = (event) => {
     yup
-      .reach(formSchema, event.target.name)
+      .reach(loginFormSchema, event.target.name)
       .validate(event.target.value)
       .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [event.target.name]: "",
+          [event.target.name]: ""
         });
       })
       .catch((error) => {
         setFormErrors({
           ...formErrors,
-          [event.target.name]: error.formErrors,
+          [event.target.name]: error.formErrors
         });
       });
   };
 
   const formSubmit = (event) => {
+
     event.preventDefault();
     axios
       .post("https://reqres.in/api/users", formState)
@@ -83,44 +63,62 @@ function Login(props) {
 
   const onInputChange = (event) => {
     event.persist();
+
     const newFormData = {
       ...formState,
       [event.target.name]:
-        event.target.type === "submit"
-          ? event.target.submit
-          : event.target.value,
+        event.target.type === "button" ? event.target.submit : event.target.value
     };
     validateChange(event);
     setFormState(newFormData);
   };
 
   return (
-    <StyledForm className="form-container" onSubmit={formSubmit}>
-      <label htmlFor="username">
-        <input
-          id="username"
-          value={formState.username}
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={onInputChange}
-        />
-      </label>
-
-      <label htmlFor="password">
-        <input
-          id="password"
-          value={formState.password}
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={onInputChange}
-        />
-      </label>
-      <SubmitButton id="submitBtn" disabled={buttonDisabled} type="submit">
-        Login
-      </SubmitButton>
-    </StyledForm>
+    <Container>
+      <form onSubmit={formSubmit}>
+        <Wrapper>
+        <div className="formHeading">
+          <h1>Login</h1>
+        </div>
+        <div className="formInputs">
+          <label htmlFor="username">
+            <input
+              id="username"
+              value={formState.username}
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={onInputChange}
+            />
+            <p className="errors">{formErrors.username}</p>
+          </label>
+        </div>
+        <div className="formInputs">
+          <label htmlFor="password">
+            <input
+              id="password"
+              value={formState.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={onInputChange}
+            />
+            <p className="errors">{formErrors.password}</p>
+          </label>
+        </div>
+        <div className="submitButton">
+          <Button disabled={buttonDisabled} type="button" name='submit'>Login</Button>
+        </div>
+        <p>
+            Don't have an account?
+            <br />
+            <Link to='/register'>
+              <StyledLink>Register in here</StyledLink>
+            </Link>
+        </p>
+        </Wrapper>
+      </form>
+    </Container>
   );
 }
 

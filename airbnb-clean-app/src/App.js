@@ -1,36 +1,30 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import styled from "styled-components";
+import { Route } from "react-router-dom";
 import Header from "./Components/Header";
 import Login from "./Components/Login";
-import LoginFormContainer from "./Components/LoginFormContainer";
 import Form from "./Components/RegistrationForm";
 import ListingsForm from "./Components/ListingsForm";
-
-const WrapperDiv = styled.div`
-  font-family: sans-serif;
-  text-align: center;
-`;
+import FormContainer from './Components/FormContainer';
+import './App.css';
 
 function App() {
   return (
-    <>
-      <WrapperDiv>
-        <Header />
-
+    <div className="App">
+      <Header />
         <Route path="/login">
-          <LoginFormContainer>
+          <FormContainer>
             <Login />
-          </LoginFormContainer>
+          </FormContainer>
         </Route>
         <Route path="/register">
-          <Form />
+          <FormContainer>
+            <Form />
+          </FormContainer>
         </Route>
         <Route path="/listings">
           <ListingsForm />
         </Route>
-      </WrapperDiv>
-    </>
+    </div>
   );
 }
 

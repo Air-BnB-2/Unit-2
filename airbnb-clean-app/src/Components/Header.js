@@ -10,17 +10,20 @@ const StyledNavBar = styled.nav`
   height: 70px;
   padding-top: 5px;
 `;
+
 const StyledH1 = styled.h1`
   color: #d80565;
   display: flex;
   justify-content: flex-start;
   margin-left: 2%;
 `;
+
 const StyledLogo = styled.img`
   height: 50px;
   width: 50px;
   display: flex;
   justify-content: flex-start;
+  margin-left: 2%;
 `;
 
 const NavDiv = styled.nav`
@@ -29,10 +32,12 @@ const NavDiv = styled.nav`
   align-items: center;
   width: 75%;
 `;
+
 const NavLinks = styled.a`
   color: #ffffff;
-  margin: 5px;
+  /* margin: 5px; */
 `;
+
 const Button = styled.button`
   height: 40px;
   width: 90px;
@@ -48,14 +53,14 @@ const Button = styled.button`
 function Header() {
   return (
     <StyledNavBar>
-      <StyledH1>Airbnb Optimal Pricing &nbsp;</StyledH1>
       <StyledLogo src={Logo} alt="logopng" />
+      <StyledH1>Airbnb Optimal Pricing &nbsp;</StyledH1>
       <NavDiv>
         <NavLinks href="https://practical-khorana-8d6535.netlify.app/index.html">
-          Home
+          <Button type="secondary-red">Home</Button>
         </NavLinks>
         <NavLinks href="https://practical-khorana-8d6535.netlify.app/about.html">
-          About
+          <Button type="primary-red">About</Button>
         </NavLinks>
         <Link to="/register">
           <Button type="secondary-red">Register</Button>
