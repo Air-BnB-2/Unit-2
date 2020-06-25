@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "./Container";
 import Button from "./Button";
-import StyledLink from "./Link";
 import formSchema from "./FormSchema";
 import * as yup from "yup";
 import axios from "axios";
@@ -137,14 +136,16 @@ export default function Form() {
           <Link to="/listings">
             <div className="submitButton">
               <Button disabled={buttonDisabled} name="submit">
-                Submit
+                Register
               </Button>
             </div>
           </Link>
           <p>
             Already have an account?
             <br />
-            <StyledLink href="#">Log in here</StyledLink>
+            <Link to='/login' className='link'>
+              Log in here
+            </Link>
           </p>
         </Wrapper>
       </form>

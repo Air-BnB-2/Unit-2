@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1, h4, h5, p, label {
+  color: #FFFFFF;
+}
+
+.link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+}
+
+#amenities {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 20vh;
+  width: 18vw;
+}
+
+.errors {
+  font-size: .8rem;
+  color: #D80565;
+}
