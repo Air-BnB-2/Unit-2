@@ -300,7 +300,7 @@ export default function ListingsForm(props) {
         </label>
         <Button disabled={buttonDisabled} name="submit">
           Submit
-              </Button>
+        </Button>
       </form>
     </ListingsContainer>
   );

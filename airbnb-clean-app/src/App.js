@@ -1,72 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Header from "./Components/Header";
 import Login from "./Components/Login";
 import Form from "./Components/RegistrationForm";
 import ListingsForm from "./Components/ListingsForm";
 import FormContainer from './Components/FormContainer';
 import ListingsCard from './Components/ListingsCard';
+import ListingsCardContainer from './Components/ListingsCardContainer';
 import DashboardContainer from './Components/DashboardContainer';
+import DashboardButton from './Components/DashboardButton';
+import SideBar from './Components/DashboardSideBar';
 import './App.css';
 
 const dummyData = [
   {
-    propertyName: "NARNIA",
-    propertyType: "other",
-    roomType: "entire",
-    guests: "8",
-    bedrooms: "2000",
-    beds: "12",
-    bathrooms: "0",
+    propertyName: "High Rise Apartment",
+    propertyType: "Apartment",
+    roomType: "Entire Apartment",
+    guests: "4",
+    bedrooms: "2",
+    beds: "3",
+    bathrooms: "1.5",
     amenities: [
-      "wifi",
-      "pool"
+      "Wifi",
+      "Roku",
+      "Washer",
+      "Dryer",
+      "AC"
     ],
     cancellation: "flexible"
   },
 
   {
-    propertyName: "MIDDLE EARTH",
-    propertyType: "other",
-    roomType: "entire",
-    guests: "10",
-    bedrooms: "2",
-    beds: "2",
+    propertyName: "Beach Getaway",
+    propertyType: "House",
+    roomType: "Entire Home",
+    guests: "8",
+    bedrooms: "4",
+    beds: "4",
     bathrooms: "2",
-    amenities: {
-      wifi: true,
-      cable: false,
-      roku: false,
-      appleTV: true,
-      washer: false,
-      dryer: false,
-      parking: false,
-      ac: false,
-      pool: false,
-    },
+    amenities: [
+      "Wifi",
+      "Cable",
+      "appleTV",
+      "Washer",
+      "Dryer",
+      "Parking",
+      "AC",
+      "Pool"
+    ],
     cancellation: "strict"
-  },
-
-  {
-    propertyName: "NEVERLAND",
-    propertyType: "other",
-    roomType: "entire",
-    guests: "4",
-    bedrooms: "6",
-    beds: "3",
-    bathrooms: "3",
-    amenities: {
-      wifi: false,
-      cable: true,
-      roku: false,
-      appleTV: false,
-      washer: false,
-      dryer: false,
-      parking: false,
-      ac: false,
-      pool: true,
-    },
-    cancellation: "moderate"
   }
 ]
 
@@ -100,14 +83,22 @@ function App() {
       </Route>
       <Route path='/dashboard'>
         <DashboardContainer>
-          {
-            listings.map(listing => {
-              return (
-                  <ListingsCard key={listing.id} details={listing} />
-              )
-            })
-          }
-        </DashboardContainer>
+          <SideBar />
+            <ListingsCardContainer>
+              {
+                listings.map(listing => {
+                  return (
+                      <ListingsCard key={listing.id} details={listing} />
+                  )
+                })
+              }
+              <Link to='/listings' className='link'>
+                <DashboardButton>
+                  <p className='buttonText'>Add Listing</p>
+                </DashboardButton>
+              </Link>
+            </ListingsCardContainer>
+          </DashboardContainer>
       </Route>
     </div>
   );

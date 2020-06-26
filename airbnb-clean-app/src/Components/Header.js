@@ -9,6 +9,9 @@ const StyledNavBar = styled.nav`
   background-color: #222222;
   height: 70px;
   padding-top: 5px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 `;
 
 const StyledH1 = styled.h1`
