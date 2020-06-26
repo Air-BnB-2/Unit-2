@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Container from './Container';
-import Wrapper from './FormWrapper';
 import Button from './Button';
 import loginFormSchema from './LoginFormSchema';
 import * as yup from "yup";
@@ -14,11 +13,12 @@ function Login() {
     password: ""
   };
 
+  const history = useHistory()
   const [users, setUsers] = useState([]);
   const [formState, setFormState] = useState(initialFormValues);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormValues);
- 
+
   useEffect(() => {
 
     loginFormSchema.isValid(formState).then((valid) => {
@@ -58,6 +58,8 @@ function Login() {
       .catch((error) => {
         console.log(error.response);
       });
+
+    history.push('/dashboard')
   };
 
   const onInputChange = (event) => {
@@ -75,47 +77,37 @@ function Login() {
   return (
     <Container>
       <form onSubmit={formSubmit}>
-        <Wrapper>
-        <div className="formHeading">
-          <h1>Login</h1>
-        </div>
-        <div className="formInputs">
-          <label htmlFor="username">
-            <input
-              id="username"
-              value={formState.username}
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={onInputChange}
-            />
-            <p className="errors">{formErrors.username}</p>
-          </label>
-        </div>
-        <div className="formInputs">
-          <label htmlFor="password">
-            <input
-              id="password"
-              value={formState.password}
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={onInputChange}
-            />
-            <p className="errors">{formErrors.password}</p>
-          </label>
-        </div>
-        <div className="submitButton">
-          <Button disabled={buttonDisabled} type="button" name='submit'>Login</Button>
-        </div>
+        <h1>Login</h1>
+        <label htmlFor="username">
+          <input
+            id="username"
+            value={formState.username}
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={onInputChange}
+          />
+          <p className="errors">{formErrors.username}</p>
+        </label>
+        <label htmlFor="password">
+          <input
+            id="password"
+            value={formState.password}
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={onInputChange}
+          />
+          <p className="errors">{formErrors.password}</p>
+        </label>
+        <Button disabled={buttonDisabled} name='submit'>Login</Button>
         <p>
-            Don't have an account?
+          Don't have an account?
             <br />
-            <Link to='/register' className='link'>
-              Register here
+          <Link to='/register' className='link'>
+            Register here
             </Link>
         </p>
-        </Wrapper>
       </form>
     </Container>
   );

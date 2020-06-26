@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-const FormContainer = styled.div`
+const DashboardContainer = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: linear-gradient(#D80565, #FF385C);
+    background-image: linear-gradient(#D80565, #FF385C);
     height: 100%;
-    background-image: url('arielviewhomes.png');
     position: fixed;
     min-width: 100%;
     min-height: 100%;
@@ -14,4 +13,4 @@ const FormContainer = styled.div`
     background-position: center;
 `
 
-export default FormContainer;
+export default DashboardContainer;
