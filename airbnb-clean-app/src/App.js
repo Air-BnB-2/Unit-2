@@ -14,24 +14,6 @@ import './App.css';
 
 const dummyData = [
   {
-    propertyName: "High Rise Apartment",
-    propertyType: "Apartment",
-    roomType: "Entire Apartment",
-    guests: "4",
-    bedrooms: "2",
-    beds: "3",
-    bathrooms: "1.5",
-    amenities: [
-      "Wifi",
-      "Roku",
-      "Washer",
-      "Dryer",
-      "AC"
-    ],
-    cancellation: "flexible"
-  },
-
-  {
     propertyName: "Beach Getaway",
     propertyType: "House",
     roomType: "Entire Home",
@@ -41,12 +23,7 @@ const dummyData = [
     bathrooms: "2",
     amenities: [
       "Wifi",
-      "Cable",
       "appleTV",
-      "Washer",
-      "Dryer",
-      "Parking",
-      "AC",
       "Pool"
     ],
     cancellation: "strict"
