@@ -10,18 +10,18 @@ function ListingsCard({ details }) {
   return (
     <>
       <CardWrapper>
-        <h3>{details.propertyName}</h3>
+        <h2 className='propertyName'>{details.propertyName}</h2>
         <div className='propertyDetails'>
-          <p className=''>{details.roomType} Guests: {details.guests} Rooms: {details.bedrooms} Beds: {details.beds} Bathrooms: {details.bathrooms} Cancellation Policy: {details.cancellation}</p>
+          <p>{details.roomType} <br/> Guests: {details.guests} Rooms: {details.bedrooms} Beds: {details.beds} Bathrooms: {details.bathrooms} <br/> Cancellation Policy: {details.cancellation}</p>
         </div>
         <div className='propertyAmenities'>
           {
             !!details.amenities && !!details.amenities.length &&
             <div>
                 <h4>Amenities:</h4>
-                <p className='propertyAmenities'>
-                  {details.amenities.map((amenity) => <>{amenity},</>)}
-                </p>
+                <ul className='propertyAmenities'>
+                  {details.amenities.map((amenity, i) => <li key={i}>{amenity}</li>)}
+                </ul>
             </div>
           }
         </div>

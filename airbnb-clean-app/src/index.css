@@ -21,6 +21,10 @@ h1, h2, h3, h4, h5, p, label, ul, span {
   color: #FFFFFF;
 }
 
+li {
+  line-height: 25px;
+}
+
 .link {
   color: #FFFFFF;
   text-decoration: none;
@@ -45,12 +49,20 @@ h1, h2, h3, h4, h5, p, label, ul, span {
   width: 18vw;
 }
 
+.propertyName {
+  background: -webkit-linear-gradient(#D80565, #FF385C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .propertyDetails {
-  word-spacing: 10px;
+  line-height: 25px;
+  word-spacing: 2px;
+  text-align: left;
 }
 
 .propertyAmenities {
-  word-spacing: 10px;
+  text-align: left;
 }
 
 .errors {

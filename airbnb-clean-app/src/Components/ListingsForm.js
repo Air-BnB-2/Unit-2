@@ -21,8 +21,7 @@ export default function ListingsForm(props) {
       cable: false,
       roku: false,
       appleTV: false,
-      washer: false,
-      dryer: false,
+      washerdryer: false,
       parking: false,
       ac: false,
       pool: false,
@@ -240,20 +239,12 @@ export default function ListingsForm(props) {
                 checked={formState.appleTV}
                 onChange={onCheckboxChange}
               />
-                Washer
+                Washer/Dryer
                 <input
                 type="checkbox"
                 name="washer"
                 value="washer"
-                checked={formState.washer}
-                onChange={onCheckboxChange}
-              />
-                Dryer
-                <input
-                type="checkbox"
-                name="dryer"
-                value="dryer"
-                checked={formState.dryer}
+                checked={formState.washerdryer}
                 onChange={onCheckboxChange}
               />
                 Parking
@@ -294,7 +285,7 @@ export default function ListingsForm(props) {
             <option value="moderate">Moderate</option>
             <option value="flexible">Flexible</option>
             <option value="superStrict30">Super Strict (30 days)</option>
-            <option value="superstrict60">Super Strict (60 days)</option>
+            <option value="superStrict60">Super Strict (60 days)</option>
           </select>
           <p className="errors">{errors.cancellation}</p>
         </label>
