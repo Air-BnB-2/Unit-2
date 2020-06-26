@@ -10,23 +10,21 @@ function ListingsCard({ details }) {
   return (
     <>
       <CardWrapper>
-        <h3>Property Name: {details.propertyName}</h3>
-        <p>Property Type: {details.propertyType}</p>
-        <p>Room Type: {details.roomType}</p>
-        <p>Accomodates: {details.guests}</p>
-        <p>Number of bedrooms: {details.bedrooms}</p>
-        <p>Number of beds: {details.beds}</p>
-        <p>Number of bathrooms: {details.bathrooms}</p>
-        {
-          !!details.amenities && !!details.amenities.length &&
-          <div>
-            <h4>Amenities:</h4>
-              <ul>
-              {details.amenities.map((amenity, i) => <li key={i}>{amenity}</li>)}
-            </ul>
-          </div>
-        }
-        <p>Cancellation Policy: {details.cancellation}</p>
+        <h3>{details.propertyName}</h3>
+        <div className='propertyDetails'>
+          <p className=''>{details.roomType} Guests: {details.guests} Rooms: {details.bedrooms} Beds: {details.beds} Bathrooms: {details.bathrooms} Cancellation Policy: {details.cancellation}</p>
+        </div>
+        <div className='propertyAmenities'>
+          {
+            !!details.amenities && !!details.amenities.length &&
+            <div>
+                <h4>Amenities:</h4>
+                <p className='propertyAmenities'>
+                  {details.amenities.map((amenity) => <>{amenity},</>)}
+                </p>
+            </div>
+          }
+        </div>
       </CardWrapper>
     </>
   );

@@ -106,7 +106,7 @@ function Login() {
             <br />
           <Link to='/register' className='link'>
             Register here
-            </Link>
+          </Link>
         </p>
       </form>
     </Container>
