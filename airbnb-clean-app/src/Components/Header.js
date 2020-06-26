@@ -35,7 +35,6 @@ const NavDiv = styled.nav`
 
 const NavLinks = styled.a`
   color: #ffffff;
-  /* margin: 5px; */
 `;
 
 const Button = styled.button`
@@ -67,6 +66,9 @@ function Header() {
         </Link>
         <Link to="/login">
           <Button type="primary-red">Login</Button>
+        </Link>
+        <Link to="/dashboard">
+          <Button type="secondary-red">Dashboard</Button>
         </Link>
       </NavDiv>
     </StyledNavBar>
